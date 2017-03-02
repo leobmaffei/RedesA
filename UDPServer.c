@@ -4,6 +4,8 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+//#include <sys/cstdlib.h> // Para o clear
+
 
 /*
  * Servidor UDP
@@ -14,7 +16,8 @@ main(int argc, char *argv[] )
     unsigned short port;
    int sockint,s, namelen, client_address_size;
    struct sockaddr_in client, server;
-   char buf[32];
+   char buf[200];
+   char exitFlag = "n";
 
    /*
     * Cria um socket UDP (dgram). 
@@ -65,21 +68,28 @@ main(int argc, char *argv[] )
     * O endereço do cliente será armazenado em "client".
     */
    client_address_size = sizeof(client);
-   if(recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr *) &client,
-            &client_address_size) <0)
+
+   while(buf != "exit")
    {
-       perror("recvfrom()");
-       exit(1);
-   }
 
-   /*
-    * Imprime a mensagem recebida, o endereço IP do cliente
-    * e a porta do cliente 
-    */
-   printf("Recebida a mensagem %s do endereço IP %s da porta %d\n",buf,inet_ntoa(client.sin_addr),ntohs(client.sin_port));
-
+     if(recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr *) &client,
+              &client_address_size) <0)
+     {
+         perror("recvfrom()");
+         exit(1);
+     }
+      system("CLS");
+      printf("SERVIDOR:\n");
+     /*
+      * Imprime a mensagem recebida, o endereço IP do cliente
+      * e a porta do cliente 
+      */
+     printf("Recebida a mensagem: %s \n IP: %s PORTA: %d\n",buf,inet_ntoa(client.sin_addr),ntohs(client.sin_port));
    /*
     * Fecha o socket.
     */
+   }
    close(s);
+ 
+ exit(1);
 }
