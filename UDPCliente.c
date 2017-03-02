@@ -19,7 +19,7 @@ char **argv;
    unsigned short port;
    struct sockaddr_in server;
    char buf[200];
-   char input[200] = "exit";
+   char input[200] = "exit\n";  //Adicionado o \n para comparacao
    /* 
     * O primeiro argumento (argv[1]) é o endereço IP do servidor.
     * O segundo argumento (argv[2]) é a porta do servidor.
@@ -52,6 +52,8 @@ char **argv;
       printf(">");
       fgets(buf, sizeof buf, stdin);
       //teste para ver o erro -------------------------------------------------
+      
+      
     if(strcmp(buf,input) == 0){
       printf("igual\n");
     }
