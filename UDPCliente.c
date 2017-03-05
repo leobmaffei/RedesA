@@ -74,44 +74,22 @@ char **argv;
 
 
           //daqui para baixo ele vira o servidor esperando a resposta
-      /*
-    * Liga o servidor à porta definida anteriormente.
-    */
-         /* Define o endereço IP e a porta do cliente paea resposta */
-   server.sin_family      = AF_INET;            /* Tipo do endereço         */
-   server.sin_port        = portResposta;               /* Porta do servidor        */
-   server.sin_addr.s_addr = INADDR_ANY; /* Endereço IP do servidor  */
-
-
-     if (bind(sResposta, (struct sockaddr *)&server, sizeof(server)) < 0) //////////////////////////////////////socket sResposta para receber a resposta do server
-     {
-       perror("bind()");
-       exit(1);
-     }
-
-      /* Consulta qual porta foi utilizada. */
-     namelen = sizeof(server);
-     if (getsockname(s, (struct sockaddr *) &server, &namelen) < 0)
-     {
-       perror("getsockname()");
-       exit(1);
-     }
-
-   /* Imprime qual porta foi utilizada. */
-     printf("Porta utilizada é %d\n", ntohs(server.sin_port));
-
-
+     
      /*
     * Recebe uma mensagem do cliente.
     * O endereço do cliente será armazenado em "client".
     */
-     client_address_size = sizeof(client);
+     //client_address_size = sizeof(client);
+        int recived = 0;
+        
+        
     if(recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr *) &client,
       &client_address_size) <0)
      {
        perror("recvfrom()");
        exit(1);
      }
+            
       /*
       * Imprime a mensagem recebida, o endereço IP do cliente
       * e a porta do cliente 
@@ -119,7 +97,7 @@ char **argv;
      printf("Recebida a mensagem: %s \n IP: %s PORTA: %d\n",buf,inet_ntoa(client.sin_addr),ntohs(client.sin_port));
        
 
-      }
+    }
       /* Fecha o socket */
       
       close(sResposta);

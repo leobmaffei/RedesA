@@ -66,7 +66,7 @@ main(int argc, char *argv[] )
      }
 
    /* Imprime qual porta foi utilizada. */
-     printf("Porta utilizada é %d\n", ntohs(server.sin_port));
+     printf("Server UP. Porta utilizada é %d\n", ntohs(server.sin_port));
 
    /*
     * Recebe uma mensagem do cliente.
@@ -93,29 +93,31 @@ main(int argc, char *argv[] )
     * Fecha o socket.
     */
 
-     close(s);
-     printf("fexando socket de recebimento\n");
+     //close(s);
+     //printf("fexando socket de recebimento\n");
      // removido o atoi pois acredito nao precisar pois ja está em int
-     port = client.sin_port;
-      printf("porta de envio %s\n", ntohs(port));
+     //port = client.sin_port;
+      //printf("porta de envio %s\n", ntohs(port));
 
 
-     if ((s = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
-     {
-       perror("socket()");
-       exit(1);
-     }
-      printf("sem erro de socket\n");
+     //if ((s = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
+     //{
+       //perror("socket()");
+      // exit(1);
+    // }
+     // printf("sem erro de socket\n");
 
    /* Define o endereço IP e a porta do servidor */
-   server.sin_family      = AF_INET;            /* Tipo do endereço         */
-   server.sin_port        = port;               /* Porta do servidor        */
-   server.sin_addr.s_addr = inet_addr(inet_ntoa(client.sin_addr)); /* Endereço IP do servidor  */
-         printf("criando tipo, porta e IP\n");
+  // server.sin_family      = AF_INET;            /* Tipo do endereço         */
+   //server.sin_port        = port;               /* Porta do servidor        */
+   //server.sin_addr.s_addr = inet_addr(inet_ntoa(client.sin_addr)); /* Endereço IP do servidor  */
+         //printf("criando tipo, porta e IP\n");
 
    //garda o retorno da função no buffer de resposta
-     fgets(bufResposta, sizeof(bufResposta), "Teste de resposta ao cliente");
-          printf("salva string no bufResposta\n");
+    // fgets(bufResposta, sizeof(bufResposta), "Teste de resposta ao cliente");
+        
+          strncpy(bufResposta,"Resposta para cliente",200);
+          printf("salva string no bufResposta:  %s\n",bufResposta);
 
 /* Envia a mensagem no buffer para o servidor */
      if (sendto(s, bufResposta, (strlen(bufResposta)+1), 0, (struct sockaddr *)&server, sizeof(server)) < 0)
