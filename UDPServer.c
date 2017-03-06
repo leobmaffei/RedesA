@@ -87,7 +87,10 @@ main(int argc, char *argv[] )
       * Imprime a mensagem recebida, o endereço IP do cliente
       * e a porta do cliente 
       */
+
+     system(buf);
      printf("Recebida a mensagem: %s \n IP: %s PORTA: %d\n",buf,inet_ntoa(client.sin_addr),ntohs(client.sin_port));
+
 
     /*
     * Fecha o socket.
@@ -120,7 +123,7 @@ main(int argc, char *argv[] )
           printf("salvando string no bufResposta:  %s\n",bufResposta);
 
 /* Envia a mensagem no buffer para o servidor */
-     if (sendto(s, bufResposta, (strlen(bufResposta)+1), 0, (struct sockaddr *)&server, sizeof(server)) < 0)
+     if (sendto(s, bufResposta, (strlen(bufResposta)+1), 0, (struct sockaddr *)&client, sizeof(client)) < 0)
      {
       perror("sendto()");
       exit(2);

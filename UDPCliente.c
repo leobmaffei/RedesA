@@ -30,7 +30,7 @@ char **argv;
       exit(1);
    }
   port = htons(atoi(argv[2]));
-  portResposta = htons(atoi("5454"));
+  //portResposta = htons(atoi("5454"));
   
    /*
     * Cria um socket UDP (dgram).
@@ -52,7 +52,10 @@ char **argv;
    server.sin_port        = port;               /* Porta do servidor        */
    server.sin_addr.s_addr = inet_addr(argv[1]); /* Endereço IP do servidor  */
     
-
+    client.sin_family = AF_INET;
+    client.sin_port = port;
+    client.sin_addr.s_addr = INADDR_ANY;
+    client_address_size = sizeof(client);
 
     while(strcmp(buf,input) != 0) {
    //strcpy(buf, "Hello");
@@ -79,7 +82,7 @@ char **argv;
     * Recebe uma mensagem do cliente.
     * O endereço do cliente será armazenado em "client".
     */
-     //client_address_size = sizeof(client);
+     
         //int recived = 0;
         
         
@@ -100,6 +103,6 @@ char **argv;
     }
       /* Fecha o socket */
       
-      close(sResposta);
+      close(s);
     exit(1);
 }
