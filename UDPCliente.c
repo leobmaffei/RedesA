@@ -26,77 +26,73 @@ char **argv;
     */
    if(argc != 3)
    {
-      printf("Use: %s enderecoIP porta\n",argv[0]);
-      exit(1);
-   }
+    printf("Use: %s enderecoIP porta\n",argv[0]);
+    exit(1);
+  }
   port = htons(atoi(argv[2]));
   //portResposta = htons(atoi("5454"));
   
    /*
     * Cria um socket UDP (dgram).
     */
-   if ((s = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
-   {
-       perror("socket()");
-       exit(1);
-   }
-   if ((sResposta = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
-   {
-       perror("socket()");
-       exit(1);
-   }
-  
+  if ((s = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
+  {
+   perror("socket()");
+   exit(1);
+ }
+ if ((sResposta = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
+ {
+   perror("socket()");
+   exit(1);
+ }
+ 
 
    /* Define o endereço IP e a porta do servidor */
    server.sin_family      = AF_INET;            /* Tipo do endereço         */
    server.sin_port        = port;               /* Porta do servidor        */
    server.sin_addr.s_addr = inet_addr(argv[1]); /* Endereço IP do servidor  */
-    
-    int slen = sizeof(server);
-   
+ 
+ int slen = sizeof(server);
+ 
 
-    while(strcmp(buf,input) != 0) {
+ while(strcmp(buf,input) != 0) {
    //strcpy(buf, "Hello");
 
    /*Pega a mensagem do teclado para ser enviada*/
 
-      printf(">");
-      fgets(buf, sizeof buf, stdin);
+  printf(">");
+  fgets(buf, sizeof buf, stdin);
 
-      
+  
 
     /* Envia a mensagem no buffer para o servidor */
-      if (sendto(s, buf, (strlen(buf)+1), 0, (struct sockaddr *)&server, sizeof(server)) < 0)
-      {
-          perror("sendto()");
-          exit(2);
-      }
-          
-      
+  if (sendto(s, buf, (strlen(buf)+1), 0, (struct sockaddr *)&server, sizeof(server)) < 0)
+  {
+    perror("sendto()");
+    exit(2);
+  }
+  
+  
 
 
 
 
           //daqui para baixo ele vira o servidor esperando a resposta
-     
-        
-        
-    if(recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr *) &server, &slen) <0)
-     {
-       perror("recvfrom()");
-       exit(1);
-     }
-            
+  
+  
+  
+  if(recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr *) &server, &slen) <0)
+  {
+   perror("recvfrom()");
+   exit(1);
+ }
+ 
       /*
-      * Imprime a mensagem recebida, o endereço IP do cliente
-      * e a porta do cliente 
+      * Imprime a mensagem recebida
       */
-    // printf("Recebida a mensagem: %s \n IP: %s PORTA: %d\n",buf,inet_ntoa(server.sin_addr),ntohs(server.sin_port));
-       
-     printf("Recebida a mensagem: %s \n",buf );
-    }
+ printf(" %s \n",buf );
+}
       /* Fecha o socket */
-      
-      close(s);
-    exit(1);
+close(s);
+exit(1);
 }

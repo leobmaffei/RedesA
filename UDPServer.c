@@ -39,6 +39,19 @@ main(int argc, char *argv[] )
 
     while(buf != "exit")
     {
+      //cria um arquivo para guardar o retorno do system
+        FILE *fp;
+        char path[200];
+
+  /* Open the command for reading. */
+  fp = popen("ls", "r");
+  if (fp == NULL) {
+    printf("Failed to run command\n" );
+    exit(1);
+  }
+
+
+
    /*
     * Cria um socket UDP (dgram). 
     */
@@ -90,39 +103,19 @@ main(int argc, char *argv[] )
 
 
 
-     system(buf);
+     
      printf("Recebida a mensagem: %s \n IP: %s PORTA: %d\n",buf,inet_ntoa(client.sin_addr),ntohs(client.sin_port));
-
-
-    /*
-    * Fecha o socket.
-    */
-
-     //close(s);
-     //printf("fexando socket de recebimento\n");
-     // removido o atoi pois acredito nao precisar pois ja está em int
-     //port = client.sin_port;
-      //printf("porta de envio %s\n", ntohs(port));
-
-
-     //if ((s = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
-     //{
-       //perror("socket()");
-      // exit(1);
-    // }
-     // printf("sem erro de socket\n");
-
-   /* Define o endereço IP e a porta do servidor */
-  // server.sin_family      = AF_INET;            /* Tipo do endereço         */
-   //server.sin_port        = port;               /* Porta do servidor        */
-   //server.sin_addr.s_addr = inet_addr(inet_ntoa(client.sin_addr)); /* Endereço IP do servidor  */
-         //printf("criando tipo, porta e IP\n");
+     system(buf);
 
    //garda o retorno da função no buffer de resposta
-    // fgets(bufResposta, sizeof(bufResposta), "Teste de resposta ao cliente");
-        
-          strncpy(bufResposta,"E ai cliente, blz?",200);
-          printf("salvando string no bufResposta:  %s\n",bufResposta);
+
+     /* Read the output a line at a time - output it. */
+  while (fgets(path, sizeof(path)-1, fp) != NULL) {
+    strcat(bufResposta, path);
+    printf("%s", bufResposta);
+  }
+
+
 
 /* Envia a mensagem no buffer para o servidor */
      if (sendto(s, bufResposta, (strlen(bufResposta)+1), 0, (struct sockaddr *)&client, sizeof(client)) < 0)
@@ -130,10 +123,12 @@ main(int argc, char *argv[] )
       perror("sendto()");
       exit(2);
     }
-         printf("mensagem retornada para o cliente com sucesso\n");
+
+
 
     close(s);
-         printf("porta de resposta fechada\n");
+    /* close */
+    pclose(fp);
 
    /* Fecha o socket */ 
 
