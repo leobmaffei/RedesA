@@ -20,6 +20,7 @@ char **argv;
    struct sockaddr_in client, server;
    char buf[200];
    char input[200] = "exit\n";  //Adicionado o \n para comparacao Show mano
+   char bufResposta[2000];
    /* 
     * O primeiro argumento (argv[1]) é o endereço IP do servidor.
     * O segundo argumento (argv[2]) é a porta do servidor.
@@ -45,25 +46,24 @@ char **argv;
    perror("socket()");
    exit(1);
  }
- 
+
 
    /* Define o endereço IP e a porta do servidor */
    server.sin_family      = AF_INET;            /* Tipo do endereço         */
    server.sin_port        = port;               /* Porta do servidor        */
    server.sin_addr.s_addr = inet_addr(argv[1]); /* Endereço IP do servidor  */
- 
- int slen = sizeof(server);
- 
 
+ int slen = sizeof(server);
+
+ system("clear");
  while(strcmp(buf,input) != 0) {
    //strcpy(buf, "Hello");
-
    /*Pega a mensagem do teclado para ser enviada*/
 
   printf(">");
   fgets(buf, sizeof buf, stdin);
 
-  
+
 
     /* Envia a mensagem no buffer para o servidor */
   if (sendto(s, buf, (strlen(buf)+1), 0, (struct sockaddr *)&server, sizeof(server)) < 0)
@@ -71,26 +71,17 @@ char **argv;
     perror("sendto()");
     exit(2);
   }
-  
-  
 
+  //daqui para baixo ele vira o servidor esperando a resposta
 
-
-
-          //daqui para baixo ele vira o servidor esperando a resposta
-  
-  
-  
-  if(recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr *) &server, &slen) <0)
+  if(recvfrom(s, bufResposta, sizeof(bufResposta), 0, (struct sockaddr *) &server, &slen) <0)
   {
    perror("recvfrom()");
    exit(1);
  }
- 
-      /*
-      * Imprime a mensagem recebida
-      */
- printf(" %s \n",buf );
+
+  //Imprime a mensagem recebida
+ printf(" %s \n",bufResposta );
 }
       /* Fecha o socket */
 close(s);
