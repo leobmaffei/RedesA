@@ -75,6 +75,8 @@ char **argv;
       
 
 
+
+
           //daqui para baixo ele vira o servidor esperando a resposta
      
         
@@ -91,7 +93,7 @@ char **argv;
       */
     // printf("Recebida a mensagem: %s \n IP: %s PORTA: %d\n",buf,inet_ntoa(server.sin_addr),ntohs(server.sin_port));
        
-     printf("Recebida a mensagem: %s",buf );
+     printf("Recebida a mensagem: %s \n",buf );
     }
       /* Fecha o socket */
       

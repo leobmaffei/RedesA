@@ -88,6 +88,8 @@ main(int argc, char *argv[] )
       * e a porta do cliente 
       */
 
+
+
      system(buf);
      printf("Recebida a mensagem: %s \n IP: %s PORTA: %d\n",buf,inet_ntoa(client.sin_addr),ntohs(client.sin_port));
 
