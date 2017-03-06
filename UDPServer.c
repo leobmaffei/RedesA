@@ -116,8 +116,8 @@ main(int argc, char *argv[] )
    //garda o retorno da função no buffer de resposta
     // fgets(bufResposta, sizeof(bufResposta), "Teste de resposta ao cliente");
         
-          strncpy(bufResposta,"Resposta para cliente",200);
-          printf("salva string no bufResposta:  %s\n",bufResposta);
+          strncpy(bufResposta,"E ai cliente, blz?",200);
+          printf("salvando string no bufResposta:  %s\n",bufResposta);
 
 /* Envia a mensagem no buffer para o servidor */
      if (sendto(s, bufResposta, (strlen(bufResposta)+1), 0, (struct sockaddr *)&server, sizeof(server)) < 0)

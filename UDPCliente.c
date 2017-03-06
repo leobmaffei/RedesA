@@ -80,7 +80,7 @@ char **argv;
     * O endereço do cliente será armazenado em "client".
     */
      //client_address_size = sizeof(client);
-        int recived = 0;
+        //int recived = 0;
         
         
     if(recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr *) &client,
