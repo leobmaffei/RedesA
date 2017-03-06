@@ -52,10 +52,8 @@ char **argv;
    server.sin_port        = port;               /* Porta do servidor        */
    server.sin_addr.s_addr = inet_addr(argv[1]); /* Endereço IP do servidor  */
     
-    client.sin_family = AF_INET;
-    client.sin_port = port;
-    client.sin_addr.s_addr = INADDR_ANY;
-    client_address_size = sizeof(client);
+    int slen = sizeof(server);
+   
 
     while(strcmp(buf,input) != 0) {
    //strcpy(buf, "Hello");
@@ -65,6 +63,7 @@ char **argv;
       printf(">");
       fgets(buf, sizeof buf, stdin);
 
+      
 
     /* Envia a mensagem no buffer para o servidor */
       if (sendto(s, buf, (strlen(buf)+1), 0, (struct sockaddr *)&server, sizeof(server)) < 0)
@@ -78,16 +77,9 @@ char **argv;
 
           //daqui para baixo ele vira o servidor esperando a resposta
      
-     /*
-    * Recebe uma mensagem do cliente.
-    * O endereço do cliente será armazenado em "client".
-    */
-     
-        //int recived = 0;
         
         
-    if(recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr *) &client,
-      &client_address_size) <0)
+    if(recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr *) &server, &slen) <0)
      {
        perror("recvfrom()");
        exit(1);
@@ -97,9 +89,9 @@ char **argv;
       * Imprime a mensagem recebida, o endereço IP do cliente
       * e a porta do cliente 
       */
-     printf("Recebida a mensagem: %s \n IP: %s PORTA: %d\n",buf,inet_ntoa(client.sin_addr),ntohs(client.sin_port));
+    // printf("Recebida a mensagem: %s \n IP: %s PORTA: %d\n",buf,inet_ntoa(server.sin_addr),ntohs(server.sin_port));
        
-
+     printf("Recebida a mensagem: %s",buf );
     }
       /* Fecha o socket */
       
