@@ -19,7 +19,7 @@ char **argv;
    unsigned short port, portResposta;
    struct sockaddr_in client, server;
    char buf[200];
-   char input[200] = "exit\n";  //Adicionado o \n para comparacao Show mano
+   char input[200] = "exit";  //Adicionado o \n para comparacao Show mano
    char bufResposta[2000];
    int changePosition;
    /* 
