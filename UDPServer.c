@@ -19,6 +19,14 @@ main(int argc, char *argv[] )
   char bufResposta[2000];
   char exitFlag = "n";
   int flagComandoSistema; 
+
+
+
+  if(argc != 2)
+   {
+    printf("Use: %s porta\n",argv[0]);
+    exit(1);
+  }
 /*
     * Define a qual endereço IP e porta o servidor estará ligado.
     * Porta = 0 -> faz com que seja utilizada uma porta qualquer livre.
@@ -84,6 +92,7 @@ main(int argc, char *argv[] )
         //zera o buff resposta para nao repetir mensagens
      strcpy(bufResposta, "");
 
+     strcat(buf," 2>&1");
       /* Open the command for reading. */
      fp = popen(buf, "r");
      if (fp == NULL) {
