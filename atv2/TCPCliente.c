@@ -19,7 +19,17 @@ char **argv;
     char recvbuf[12];              
     struct hostent *hostnm;    
     struct sockaddr_in server; 
-    int s;                     
+    int s; 
+    int op;                    
+
+
+    struct mensagem
+    {
+      char usuario[19];
+      char texto[79];
+      char comando[10];
+    };
+
 
     /*
      * O primeiro argumento (argv[1]) é o hostname do servidor.
@@ -64,6 +74,60 @@ char **argv;
         perror("Connect()");
         exit(4);
     }
+
+    while(op!=4){
+
+        //menu
+    printf("Selecione a opcao desejada:\n");
+    printf("1 - Cadastrar Mensagem\n");
+    printf("2 - Ler Mensagens\n");
+    printf("3 - Apagar Mensagens\n");
+    printf("4 - Sair da Aplicacao\n\n");
+    printf("Opcao: "); 
+ 
+    scanf("%d", &op);               //Le a opcao escolhida pelo usuario
+    printf("\n\n");
+
+    switch(op){
+
+
+        case 1:{ //cadastrar mensagem
+
+            printf("Cadastrar Mensagem:\n\n");
+            printf("Usuário:");
+            scanf("%s"mensagem.usuario);
+            printf("Mensagem:"mensagem.texto);
+
+
+
+        }
+
+        case 2:{ // Ler mensagens
+
+
+        }
+
+        case 3:{ // Apagar mensagens 
+
+
+
+        }
+
+
+
+
+    }
+
+
+    }
+
+    
+
+
+
+
+
+
 
     strcpy(sendbuf, "Requisição");
 
