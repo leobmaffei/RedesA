@@ -16,8 +16,8 @@ void menu();
 
 struct mensagem
 {
-  char usuario[10];
-  char msg[50];
+  char usuario[19];
+  char msg[79];
   int tipo;
   int aux;
 }envia;
@@ -113,21 +113,21 @@ void menu()
             printf("\nOpcoes:\n");
             printf("1 - Cadastrar mensagem\n");
             printf("2 - Ler mensagens\n");
-	    printf("3 - Apagar mensagens\n");
+	       printf("3 - Apagar mensagens\n");
             printf("4 - Sair da aplicacao\n");
+            printf("OP >");
             scanf("%d",&opcao);
   
       if(opcao==1){
 	    fpurge(stdin);
 	    
 	    printf("\nUsuario: ");
-	    //scanf("%s",usuario);
         fgets(usuario, sizeof usuario, stdin);
 	    
 	    fpurge(stdin);
 	    
 	    printf("\nMensagem: ");
-          fgets(msg, sizeof msg, stdin);
+        fgets(msg, sizeof msg, stdin);
 	    
 	    fpurge(stdin);
 	    
@@ -136,33 +136,39 @@ void menu()
 	    
 	    envia.tipo = 1;
 	
-	    /* Envia a mensagem no buffer de envio para o servidor */
+	    /* Envia mensagem no buffer para o servidor */
 	    if (send(s, &envia, sizeof(envia), 0) < 0)
 	    {
 		perror("Send()");
 		exit(5);
 	    }
 	    
-	    /* Recebe a mensagem do servidor no buffer de recepção */
+	    /* Recebe a mensagem do servidor no buffer */
 	    if (recv(s, &envia, sizeof(envia), 0) < 0)
 	    {
 		perror("Recv()");
 		exit(6);
-	    }
+	    }else{
+
+        printf("%s\n", envia.msg);
+
+        }
+        
+
       }
 	    
       if(opcao==2){
 	
 	    envia.tipo = 2;
 	    
-	    /* Envia a mensagem no buffer de envio para o servidor */
+	    /* Envia mensagem no buffer para o servidor */
 	    if (send(s, &envia, sizeof(envia), 0) < 0)
 	    {
 		perror("Send()");
 		exit(5);
 	    }
 	    
-	    /* Recebe a mensagem do servidor no buffer de recepção */
+	    /* Recebe a mensagem do servidor no buffer */
 	    if (recv(s, &envia, sizeof(envia), 0) < 0)
 	    {
 		perror("Recv()");
@@ -183,7 +189,7 @@ void menu()
     
                 if(cont > 0)
                 {
-                    /* Recebe a mensagem do servidor no buffer de recepção */
+                    /* Recebe a mensagem do servidor no buffer */
 				    if (recv(s, &envia, sizeof(envia), 0) < 0)
 				    {
 				        perror("Recv()");
@@ -194,7 +200,7 @@ void menu()
             }while(cont > 0);
         }
         else
-            printf("\nServidor vazio");
+            printf("Servidor sem mensagens\n");
 		    
       }
       
@@ -209,7 +215,7 @@ void menu()
         
 	        strcpy(envia.usuario,usuario);
 	    
-	        /* Envia a mensagem no buffer de envio para o servidor */
+	        /* Envia a mensagem no buffer para o servidor */
 	        if (send(s, &envia, sizeof(envia), 0) < 0)
 	        {
 		        perror("Send()");
@@ -236,7 +242,7 @@ void menu()
         
                     if(cont2 > 0)
                     {
-                        /* Recebe a mensagem do servidor no buffer de recepção */
+                        /* Recebe a mensagem do servidor no buffer*/
 				        if (recv(s, &envia, sizeof(envia), 0) < 0)
 				        {
 				            perror("Recv()");

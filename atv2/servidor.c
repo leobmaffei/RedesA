@@ -8,11 +8,11 @@
 
 struct dados 
 {
-  char usuario[10];
-  char msg[50];
+  char usuario[19];
+  char msg[79];
   int controle;
-  int aux; // È uma segunda variavel de controle
-}envia, vet[5], vet2[5];
+  int aux; 
+}envia, vet[10], vet2[10];
 
 
 /*
@@ -28,9 +28,9 @@ char **argv;
     int s;                     /* Socket para aceitar conexıes       */
     int ns;                    /* Socket conectado ao cliente        */
     int namelen;       
-    int i;// pra conta as possiÁıes dos vet
+    int i;
     int cont = 0;
-    int cont2 = 0; // cont2 È pra deleta as mensagens
+    int cont2 = 0; // para deletar mensagens
     
 
     /*
@@ -68,16 +68,20 @@ char **argv;
     server.sin_port   = htons(port);       
     server.sin_addr.s_addr = INADDR_ANY;
 
-    //printf("%s",inet_ntoa(client.sin_addr));
+
     /*
      * Liga o servidor ‡ porta definida anteriormente.
      */
+
+    printf("Server UP! porta utilizada: %d\n",ntohs(server.sin_port));
+
     if (bind(s, (struct sockaddr *)&server, sizeof(server)) < 0)
     {
        perror("Bind()");
        exit(3);
     }
 
+    
     
     /*
      * Prepara o socket para aguardar por conexıes e
@@ -99,23 +103,27 @@ char **argv;
         perror("Accept()");
         exit(5);
     }
-  
+
+
+    printf("Conectado com cliente de IP:  pela porta: %d \n",ntohs(client.sin_port));
+
+    
     do{
       
-	/* Recebe uma mensagem do cliente atravÈs do novo socket conectado */
+	/* Recebe uma mensagem do cliente atraves do novo socket conectado */
 	if (recv(ns, &envia, sizeof(envia), 0) == -1)
 	{
 	    perror("Recv()");
 	    exit(6);
 	}
    
+   //verifica a opcao escolhida pelo cliente
 	if(envia.controle == 1)
     {
-            fpurge(stdout);
-           printf("\nCadastrar Mensagem");
-           if(cont < 5)
+           printf("Comando: Cadastrar Mensagem\n");
+           if(cont < 10)
            {
-                for(i = 0; i < 5; i++)
+                for(i = 0; i < 10; i++)
                     if(vet[i].aux == 0)
                         break; 
                         
@@ -125,7 +133,8 @@ char **argv;
                
 	            cont++;
                
-                strcpy(envia.msg,"Cadastro da Mensagem feito com Sucesso");
+
+                strcpy(envia.msg,"Mensagem cadastrada com Sucesso!");
                
                 /* Envia uma mensagem ao cliente atravÈs do socket conectado */
 		        if (send(ns, &envia, sizeof(envia), 0) < 0)
@@ -136,7 +145,7 @@ char **argv;
            }
            else
            {
-                strcpy(envia.msg,"erro no servidor : -> servidor cheio");
+                strcpy(envia.msg,"Erro: maximo de mensagens cadastradas");
                
                 if (send(ns, &envia, sizeof(envia), 0) < 0)
 		        {
@@ -148,8 +157,8 @@ char **argv;
     else
 	if(envia.controle == 2)
     {
-        printf("\nLer Mensagens");
-        for (i = 0; i < 5; i++)
+        printf("Comando: Ler Mensagens\n");
+        for (i = 0; i < 10; i++)
         {
             vet[i].controle = cont;
 	       
@@ -160,13 +169,13 @@ char **argv;
 		            exit(7);
 		        }
          }
-         printf("\nMensagens enviadas ao cliente");
+         printf("Mensagens enviadas para o cliente\n");
     }
     else
 	if(envia.controle == 3)
     {
-        printf("\nApagar mensagens");
-        for(i = 0; i < 5; i++)
+        printf("Comando: Apagar mensagens\n");
+        for(i = 0; i < 10; i++)
         {
             if(strcmp(vet[i].usuario,envia.usuario) == 0)
             {
@@ -181,9 +190,9 @@ char **argv;
         vet2[0].aux = cont2;
         
         if(cont2 > 0)
-            printf("\n\nMensagens apagas com sucesso");
+            printf("Mensagens apagadas com sucesso!\n");
         else
-            printf("\nN„o ha mensagens para serem apagadas");
+            printf("Não existem mensagens para apagar\n");
         
         for(i = 0; i < cont2; i++)
         {
@@ -205,7 +214,7 @@ char **argv;
     /* Fecha o socket aguardando por conexıes */
     close(s);
 
-    printf("Servidor terminou com sucesso\n");
+    printf("Servidor finalizou\n");
     exit(0);
 }
 
