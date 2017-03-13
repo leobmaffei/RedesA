@@ -83,6 +83,7 @@ char **argv;
 
     
     
+
     /*
      * Prepara o socket para aguardar por conexıes e
      * cria uma fila de conexıes pendentes.
@@ -92,6 +93,9 @@ char **argv;
         perror("Listen()");
         exit(4);
     }
+
+    
+
 
     /*
      * Aceita uma conex„o e cria um novo socket atravÈs do qual
@@ -211,10 +215,11 @@ char **argv;
     /* Fecha o socket conectado ao cliente */
     close(ns);
 
+
+
     /* Fecha o socket aguardando por conexıes */
     close(s);
 
-    printf("Servidor finalizou\n");
     exit(0);
 }
 
