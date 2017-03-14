@@ -1,3 +1,12 @@
+/*
+  REDES A ATIVIDADE 2
+  ALUNOS:
+  Erich Silveira      13005780
+  Leonardo Maffei   11742236
+  Leonardo Possi    13160817
+*/
+
+
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/socket.h>
