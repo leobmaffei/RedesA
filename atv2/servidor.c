@@ -3,6 +3,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <arpa/inet.h>
 #include <string.h>
 
 
@@ -102,6 +103,7 @@ char **argv;
      * ocorrer· a comunicaÁ„o com o cliente.
      */
     namelen = sizeof(client);
+
     if ((ns = accept(s, (struct sockaddr *)&client, &namelen)) == -1)
     {
         perror("Accept()");
@@ -109,7 +111,7 @@ char **argv;
     }
 
 
-    printf("Conectado com cliente de IP:  pela porta: %d \n",ntohs(client.sin_port));
+    printf("Conectado com cliente de IP:%s  pela porta: %d \n",inet_ntoa(client.sin_addr),ntohs(client.sin_port));
 
     
     do{
@@ -121,6 +123,7 @@ char **argv;
 	    exit(6);
 	}
    
+
    //verifica a opcao escolhida pelo cliente
 	if(envia.controle == 1)
     {
