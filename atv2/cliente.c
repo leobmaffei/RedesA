@@ -258,8 +258,18 @@ void menu()
 	
     }
 	if(opcao==4)
-	  exit(1);
-	  
+	  {
+      envia.tipo = 4;
+         if (send(s, &envia, sizeof(envia), 0) < 0)
+        {
+        perror("Send()");
+        exit(5);
+        }
+
+        close(s);
+
+         exit(1);
+	  }
 	   	    
      }
 

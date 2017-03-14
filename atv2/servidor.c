@@ -96,6 +96,7 @@ char **argv;
     }
 
     
+    while(1){
 
 
     /*
@@ -212,11 +213,15 @@ char **argv;
         cont2 = 0;
     }
 
+    
     }while(envia.controle != 4);
     
+    printf("Cliente desconectado!\n");
     
     /* Fecha o socket conectado ao cliente */
     close(ns);
+
+}
 
 
 
