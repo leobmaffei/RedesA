@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "D5E6F0299E756A28E90BCD4AA1CD792F43B91979+++D51067F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D5E6F0299E756A28E90BCD4AA1CD792F43B91979+++A289D7B" : 9223372036854775807,
+    "D5E6F0299E756A28E90BCD4AA1CD792F43B91979+++D51067F" : 9223372036854775807,
+    "D5E6F0299E756A28E90BCD4AA1CD792F43B91979+++5397C3E" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DDA7CC6B-7B78-4D3A-B7F4-53CEB73FEEB2",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D5E6F0299E756A28E90BCD4AA1CD792F43B91979+++A289D7B" : "",
+    "D5E6F0299E756A28E90BCD4AA1CD792F43B91979+++D51067F" : "RedesA\/",
+    "D5E6F0299E756A28E90BCD4AA1CD792F43B91979+++5397C3E" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Projeto Redes",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Projeto 1\/Projeto Redes\/Projeto Redes.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/leobmaffei\/RedesA.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D5E6F0299E756A28E90BCD4AA1CD792F43B91979+++5397C3E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/leobmaffei\/RedesA.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D5E6F0299E756A28E90BCD4AA1CD792F43B91979+++A289D7B"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/leobmaffei\/RedesA.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D5E6F0299E756A28E90BCD4AA1CD792F43B91979+++D51067F"
+    }
+  ]
+}
