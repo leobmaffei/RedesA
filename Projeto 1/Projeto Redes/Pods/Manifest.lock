@@ -1,12 +1,15 @@
 PODS:
   - Socket.IO-Client-Swift (8.3.3)
+  - SwiftSocket (2.0.1)
 
 DEPENDENCIES:
   - Socket.IO-Client-Swift (~> 8.3.3)
+  - SwiftSocket
 
 SPEC CHECKSUMS:
   Socket.IO-Client-Swift: a2faffdbde89c63aebc5d631041530c1068b02b8
+  SwiftSocket: 2d814afdc97c89217982f86fd036c1874134a63f
 
-PODFILE CHECKSUM: 9717929900ce4713fb16eaff8541e1ba2743ceb5
+PODFILE CHECKSUM: c02622096a6681ae4866f8282df1814c812927f0
 
 COCOAPODS: 1.2.1
