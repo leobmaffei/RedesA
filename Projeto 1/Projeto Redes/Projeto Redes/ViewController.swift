@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         
+        
         switch client.connect(timeout: 10) {
         case .success:
             print("Sucesso na conexão")
