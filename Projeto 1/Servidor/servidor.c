@@ -39,13 +39,25 @@ int g_sem_id;
 
 
 int temperatura[10];
+int conexao = 0;
 int clientNumber = 0;
 
 int flagLed = 0;
 
 
+struct dados 
+{
+  char usuario[19];
+  char msg[79];
+  int controle;
+  int aux; 
+}envia, vet[10], vet2[10];
+
+
 // função para a thread 
 void* tratarCliente(void *);
+void* tratarMobile(void *);
+void* logicaServer(void *);
 
 
 
@@ -70,28 +82,6 @@ char **argv;
     int tStatus;
 
 
-    //Construindo a estrutura de controle do semáforo
-    //op para travar
-    g_sem_op1[0].sem_num   =  0;
-    g_sem_op1[0].sem_op    = -1;
-    g_sem_op1[0].sem_flg   =  0;
-
-    //op para destravar
-    g_sem_op2[0].sem_num =  0;
-    g_sem_op2[0].sem_op  =  1;
-    g_sem_op2[0].sem_flg =  0;
-
-
-    //criando o semáforo
-    if( ( g_sem_id = semget( SEM_KEY, 1, IPC_CREAT | 0666 ) ) == -1 ) {
-    fprintf(stderr,"chamada a semget() falhou, impossivel criar o conjunto de semaforos!");
-    exit(1);
-  }
-
-  if( semop( g_sem_id, g_sem_op2, 1 ) == -1 ) {
-    fprintf(stderr,"chamada semop() falhou, impossivel inicializar o semaforo!");
-    exit(1);
-  }
 
 
 
@@ -108,7 +98,16 @@ char **argv;
    
     port = (unsigned short) atoi(argv[1]);
 
-   
+
+
+      //cria thread da logica do server
+     tStatus = pthread_create(&thread_id, NULL, &logicaServer, 0); /* Print o’s continuously to stderr. */
+    if(tStatus !=0){
+
+      printf("Nao foi possivel criar thread\n");
+      exit(6);
+    }
+       
     
     /*
      * Cria um socket TCP (stream) para aguardar conexıes
@@ -144,6 +143,8 @@ char **argv;
     }
 
     
+
+  
     
 
     /*
@@ -172,16 +173,45 @@ char **argv;
 
 
 
-    // Cria thread para atnder cliente
+    /* Recebe uma mensagem do cliente atraves do novo socket conectado */
+  if (recv(ns, &conexao, sizeof(int), 0) == -1)
+  {
+      perror("Recv()");
+      exit(6);
+      
+  }
+
+printf("CONEXAOOO >>>%d\n",conexao );
+
+ if(conexao == 1){
+
+   // Cria thread para atnder cliente arduino
     tStatus = pthread_create(&thread_id, NULL, &tratarCliente, &ns); /* Print o’s continuously to stderr. */
     if(tStatus !=0){
 
       printf("Nao foi possivel criar thread\n");
       exit(6);
     }
-
+    printf("CONEXAO 1\n");
+    conexao = 0;
 
     printf("Conectado com cliente de IP:%s  pela porta: %d \n",inet_ntoa(client.sin_addr),ntohs(client.sin_port));
+ }else{
+  // Cria thread para atnder cliente mobile
+    tStatus = pthread_create(&thread_id, NULL, &tratarMobile, &ns); /* Print o’s continuously to stderr. */
+    if(tStatus !=0){
+
+      printf("Nao foi possivel criar thread\n");
+      exit(6);
+    }
+
+    printf("CONEXAO N\n");
+
+    printf("Conectado com cliente de IP:%s  pela porta: %d \n",inet_ntoa(client.sin_addr),ntohs(client.sin_port));
+
+ }
+
+   
 
  
     //pthread_detach(thread); 
@@ -232,45 +262,63 @@ while(1){
 
   printf("%d <- Temperatura cliente %d\n",temperatura[clientID],clientID);
 
-  if(clientID == 0){
-
-    if(temperatura[clientID]>temperatura[clientID+1]){
-      ledOp = '1';
-      printf("Comando LIGAR led cliente %d\n\n",clientID);
-    }else{
-      ledOp = '0';
-      printf("Comando DESLIGAR led cliente %d\n\n",clientID);
-    }
-  }
-
-if(clientID == 1){
-
-    if(temperatura[clientID]>temperatura[clientID-1]){
-      ledOp = '1';
-      printf("Comando LIGAR led cliente %d\n\n",clientID);
-    }else{
-      ledOp = '0';
-      printf("Comando DESLIGAR led cliente %d\n\n",clientID);
-    }
-}
-
-
-
-
-
-  if (send(ns, &ledOp, sizeof(ledOp), 0) < 0)
-            {
-                perror("Send()");
-                exit(7);
-            }
-
-
 
   }
 
 
 
 }
+
+
+
+void* tratarMobile(void *clientSock){
+
+  int i;
+  int clientID;
+  int ns = *(int*)clientSock;
+  char ledOp = '1';
+
+  char recebido = 'a';
+
+    clientID = clientNumber;
+    clientNumber++;
+
+
+while(1){
+      
+  /* Recebe uma mensagem do cliente atraves do novo socket conectado */
+  if (recv(ns, &recebido, sizeof(char), 0) == -1)
+  {
+      perror("Recv()");
+      exit(6);
+      
+  }
+   
+
+
+
+
+  printf("%c <- CHAR RECEBIDO\n",recebido);
+
+
+
+  }
+
+}
+
+
+
+
+void* logicaServer(void *clientSock){
+
+ printf("LOGICA SERVER CRIADO\n");
+
+
+  }
+
+
+
+
 
 
 
