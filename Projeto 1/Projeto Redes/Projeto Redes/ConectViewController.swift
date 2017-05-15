@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import SwiftSocket
 
 class ConectViewController: UIViewController {
 
     @IBOutlet weak var ipText: UITextField!
     @IBOutlet weak var portText: UITextField!
     @IBOutlet weak var conectButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
