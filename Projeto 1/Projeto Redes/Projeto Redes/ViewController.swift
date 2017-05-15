@@ -11,26 +11,45 @@ import SwiftSocket
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var SendButton: UIButton!
+    @IBOutlet weak var conectionLabel: UILabel!
+    
+    
+    let client = TCPClient(address: "192.168.223.88", port: 5000)
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     
         // Do any additional setup after loading the view, typically from a nib.
-        let client = TCPClient(address: "192.168.0.1", port: 5000)
         
         
         switch client.connect(timeout: 10) {
         case .success:
             print("Sucesso na conexão")
+            conectionLabel.text = "Conectado"
             
             break
         // Connection successful 🎉
         case .failure(let error):
             
             print("falha ao conectar ao cliente")
+            conectionLabel.text = "Falha ao conectar"
+
             break
             // 💩
         }
     }
+    
+    @IBAction func sendData(_ sender: Any) {
+        switch client.send(string: "Teste de envio" ){
+        case .success:
+            print("mensagem enviada")
+        case .failure(let error):
+            print("erro no envio")
+        }
+    }
+    
     
 
 
