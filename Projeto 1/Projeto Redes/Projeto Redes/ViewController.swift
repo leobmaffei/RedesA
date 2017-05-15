@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var conectionLabel: UILabel!
     
     
-    let client = TCPClient(address: "192.168.223.88", port: 5000)
+    let client = TCPClient(address: "192.168.1.100", port: 5000)
 
     
     override func viewDidLoad() {
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func sendData(_ sender: Any) {
-        switch client.send(string: "Teste de envio" ){
+        switch client.send(string: "9" ){
         case .success:
             print("mensagem enviada")
         case .failure(let error):

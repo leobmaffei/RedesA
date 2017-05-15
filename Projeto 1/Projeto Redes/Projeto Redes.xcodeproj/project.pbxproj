@@ -14,6 +14,7 @@
 		CA4873E01EB8C78600540A4D /* Projeto_Redes.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CA4873DE1EB8C78600540A4D /* Projeto_Redes.xcdatamodeld */; };
 		CA4873E21EB8C78600540A4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA4873E11EB8C78600540A4D /* Assets.xcassets */; };
 		CA4873E51EB8C78600540A4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA4873E31EB8C78600540A4D /* LaunchScreen.storyboard */; };
+		CAA849701ECA5446008FB643 /* ConectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA8496F1ECA5446008FB643 /* ConectViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		CA4873E11EB8C78600540A4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA4873E41EB8C78600540A4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CA4873E61EB8C78600540A4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAA8496F1ECA5446008FB643 /* ConectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConectViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			children = (
 				CA4873D71EB8C78600540A4D /* AppDelegate.swift */,
 				CA4873D91EB8C78600540A4D /* ViewController.swift */,
+				CAA8496F1ECA5446008FB643 /* ConectViewController.swift */,
 				CA4873DB1EB8C78600540A4D /* Main.storyboard */,
 				CA4873E11EB8C78600540A4D /* Assets.xcassets */,
 				CA4873E31EB8C78600540A4D /* LaunchScreen.storyboard */,
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAA849701ECA5446008FB643 /* ConectViewController.swift in Sources */,
 				CA4873E01EB8C78600540A4D /* Projeto_Redes.xcdatamodeld in Sources */,
 				CA4873DA1EB8C78600540A4D /* ViewController.swift in Sources */,
 				CA4873D81EB8C78600540A4D /* AppDelegate.swift in Sources */,
@@ -385,6 +389,7 @@
 				CA4873EB1EB8C78600540A4D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
