@@ -6,18 +6,18 @@
 	<dict>
 		<key>Pods-Projeto Redes.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Socket.IO-Client-Swift.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>SwiftSocket.xcscheme</key>
 		<dict>
-			<key>orderHint</key>
-			<integer>3</integer>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
@@ -32,17 +32,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B995CB7EC7A46A13DA8BF6B2B8AA74DA</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>BE95CDFFF8681004269566A2FFD40010</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F9138157274FA9C0D1970CC2C29C1FDD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
