@@ -132,7 +132,7 @@
 				TargetAttributes = {
 					CA4873D31EB8C78600540A4D = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = CU839DJANU;
+						DevelopmentTeam = BJ8A63KNJ9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -351,7 +351,7 @@
 			baseConfigurationReference = 22FD7FA3F7CA3845FB971EFC /* Pods-Projeto Redes.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CU839DJANU;
+				DEVELOPMENT_TEAM = BJ8A63KNJ9;
 				INFOPLIST_FILE = "Projeto Redes/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LeonardoMaffei.Projeto-Redes";
@@ -365,7 +365,7 @@
 			baseConfigurationReference = 0C87BC37A2122E5E08048E2A /* Pods-Projeto Redes.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CU839DJANU;
+				DEVELOPMENT_TEAM = BJ8A63KNJ9;
 				INFOPLIST_FILE = "Projeto Redes/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LeonardoMaffei.Projeto-Redes";

@@ -26,4 +26,8 @@ class Client: NSObject {
         
     }
     
+    func disconect(){
+        self.client.close()
+    }
+    
 }
