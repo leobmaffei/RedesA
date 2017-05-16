@@ -26,10 +26,6 @@
 
 
 
-struct sembuf g_sem_op1[1];
-struct sembuf g_sem_op2[1];
-
-
 
 
 
